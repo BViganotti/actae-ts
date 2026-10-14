@@ -1,0 +1,118 @@
+{
+  "name": "@actae/sdk",
+  "version": "0.2.0",
+  "description": "TypeScript SDK for Actae — a real-time event store for agent workflows. Feature-parity port of the Python SDK (actae-client).",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BViganotti/actae-ts.git"
+  },
+  "homepage": "https://actae.dev/docs/sdks/typescript/",
+  "bugs": {
+    "url": "https://github.com/BViganotti/actae-ts/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./adapters": {
+      "types": "./dist/adapters/index.d.ts",
+      "default": "./dist/adapters/index.js"
+    },
+    "./adapters/langgraph": {
+      "types": "./dist/adapters/langgraph.d.ts",
+      "default": "./dist/adapters/langgraph.js"
+    },
+    "./adapters/langchain": {
+      "types": "./dist/adapters/langchain.d.ts",
+      "default": "./dist/adapters/langchain.js"
+    },
+    "./adapters/claude": {
+      "types": "./dist/adapters/claude.d.ts",
+      "default": "./dist/adapters/claude.js"
+    },
+    "./adapters/openai": {
+      "types": "./dist/adapters/openai.d.ts",
+      "default": "./dist/adapters/openai.js"
+    },
+    "./adapters/codex": {
+      "types": "./dist/adapters/codex.d.ts",
+      "default": "./dist/adapters/codex.js"
+    },
+    "./adapters/otel": {
+      "types": "./dist/adapters/otel.d.ts",
+      "default": "./dist/adapters/otel.js"
+    },
+    "./adapters/copilot": {
+      "types": "./dist/adapters/copilot.d.ts",
+      "default": "./dist/adapters/copilot.js"
+    },
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "default": "./dist/browser.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepublishOnly": "npm run build && npm test",
+    "typecheck": "tsc --noEmit",
+    "typecheck:examples": "tsc -p tsconfig.examples.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:live": "vitest run --config vitest.live.config.ts",
+    "smoke": "node smoke/smoke.mjs"
+  },
+  "keywords": [
+    "actae",
+    "agents",
+    "event-store",
+    "websocket",
+    "fork",
+    "resume",
+    "state"
+  ],
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "peerDependencies": {
+    "@anthropic-ai/claude-agent-sdk": ">=0.3 <1",
+    "@github/copilot-sdk": ">=1 <2",
+    "@langchain/core": ">=1 <2",
+    "@langchain/langgraph": ">=1 <2",
+    "@openai/agents": ">=0.14 <1"
+  },
+  "peerDependenciesMeta": {
+    "@anthropic-ai/claude-agent-sdk": { "optional": true },
+    "@github/copilot-sdk": { "optional": true },
+    "@langchain/core": { "optional": true },
+    "@langchain/langgraph": { "optional": true },
+    "@openai/agents": { "optional": true }
+  },
+  "devDependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.3.226",
+    "@github/copilot-sdk": "^1.0.9",
+    "@langchain/core": "^1.2.5",
+    "@langchain/langgraph": "^1.4.9",
+    "@openai/agents": "^0.14.3",
+    "@types/node": "^22.10.0",
+    "@types/ws": "^8.5.13",
+    "@vitest/coverage-v8": "^3.2.7",
+    "typescript": "^5.7.2",
+    "vitest": "^3.0.0"
+  }
+}
